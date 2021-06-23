@@ -1,0 +1,136 @@
+---
+title: "Introduction to RMarkdown"
+author: "Suzy Whoriskey"
+date: "13 July 2020"
+output:
+  pdf_document: default
+  html_document: default
+editor_options: 
+  chunk_output_type: inline
+---
+
+The sections can be defined using
+
+# Title 0
+
+***
+
+## Title 1
+
+***
+
+### Title 2
+
+The empty lines inbetween are important.
+
+
+## Aesthetics
+
+Italic font is obtained with _italic_ and bold with __bold__. Three underscores give you ___bold plus italic___.
+
+Itemisation is straightforward:
+
+- bullet 1
+
+- bullet 2
+
+But, again, the lines inbetween are important.
+
+Enumerations:
+
+1. first bullet
+
+2. second bullet
+
+3. third bullet
+
+> If you want to emphasise a phrase, you can use a block
+
+An external link can be written down explicitly <http://rmarkdown.rstudio.com> or as a [link](http://rmarkdown.rstudio.com).
+
+
+## Formulas
+
+The style for formulas follows TeX syntax. Proficiency with TeX syntax is not required, and assessment will definitely not revolve around testing TeX knowledge.
+
+In general, you can use TeX syntax anywhere in the document, to do all sort of things. More commonly, TeX is widely used due to its ample support for mathematical notations and formulas. 
+
+For example, an inline formula could be $ax^2 + bx + c = 0$. Otherwise, an equation would look like:
+$$
+\bar{X}_n = \frac{1}{n}\sum_{i=1}^{n} X_i 
+\quad \quad \quad
+\mathcal{L}_{\textbf{X}}\left( \theta \right) = \prod_{i=1}^{n} f\left(x_i \middle \vert \theta \right)
+$$
+
+
+## Code
+
+Now let's move on and see how we can embed our R code.
+
+In my keyboard, the special dash that we use is next to the "Shift" and "z" keys (I use a Mac laptop).  It is maybe next to the "1" key on a standard keyboard?
+
+These initial lines are used to set up global options:
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+```
+in this case, we intend to show both the code and the corresponding output, for every chunk of code. Note the option wheel on the right hand side of the text editor, which allows a more user friendly setup.
+
+I have included here a chunk of code that will not appear in the document.
+```{r, include = FALSE}
+knitr::opts_chunk$set(include = TRUE)
+```
+Note the option that guarantees that this will not appear. 
+When you type in the comma, RStudio will prompt a lengthy list of options that we could choose from.
+
+The following chunk of code is named *cars*, and it produces the summary for this dataset.
+```{r cars}
+summary(cars)
+```
+
+For any given chunk you can temporary redefine any global option.
+```{r, include = FALSE, echo = FALSE}
+summary(cars)
+```
+
+Note how each code section of the text editor has an R console embedded in it (buttons on the right hand side).
+
+
+## Basic operations
+Let's define some variables:
+
+```{r}
+x <- 2
+y <- 3
+```
+
+$x$ and $y$ are now defined and can be used in any of the future code. For example
+
+```{r}
+z <- x * y
+z
+```
+
+If the R code contains errors, RMarkdown will not compile the document.
+
+The code can be added inline with the same dash symbol. In the simplest case there is no evaluation of the code, as in this `example`. In this case I have just changed the style as in the code sections above. However, if I add an "r", then what I write will be recognised as R code and it will be evaluated. For example, `log(z)` is equal to `r log(z)`.
+
+
+## Including Plots
+
+You can also create and embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+
+```{r libraries, echo=FALSE}
+library(ggplot2)
+library(ggiraph)
+```
+
+Especially interactive plots!
+
+
+
+But note that this is allowed only in HTML output.
